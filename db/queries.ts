@@ -59,6 +59,9 @@ export const getUnits = cache(async () => {
 
     const normalizedData = data.map((unit) => {
         const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {
+            if (lesson.challenges.length === 0) {
+                return { ...lesson, completed: false }
+            }
             // return true/false that we can checking wheather every single challenges in this lesson has a matching challengeProgress with status of completed if that is true it means we can marked lesson completed entirely 
             const allCompletedChallenges = lesson.challenges.every((challenge) => {
                 return challenge.challengeProgress
