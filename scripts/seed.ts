@@ -52,7 +52,7 @@ const main = async () => {
                 order: 1,
             }
         ]);
-        
+
         await db.insert(schema.lessons).values([
             {
                 id: 1,
@@ -94,11 +94,24 @@ const main = async () => {
                 order: 1,
                 question: 'Which one of these is the "the man"?',
             },
+            {
+                id: 2,
+                lessonId: 1, // Noun
+                type: "ASSIST",
+                order: 2,
+                question: '"the man"',
+            },
+            {
+                id: 3,
+                lessonId: 1, // Noun
+                type: "SELECT",
+                order: 3,
+                question: 'Which one of these is the "the robot"?',
+            },
         ]);
 
         await db.insert(schema.challengeOptions).values([
             {
-                id: 1,
                 challengeId: 1,
                 imageSrc: "/man.svg",
                 correct: true,
@@ -106,7 +119,6 @@ const main = async () => {
                 audioSrc: "/es_man.mp3",
             },
             {
-                id: 2,
                 challengeId: 1,
                 imageSrc: "/woman.svg",
                 correct: false,
@@ -114,10 +126,51 @@ const main = async () => {
                 audioSrc: "/es_woman.mp3",
             },
             {
-                id: 3,
                 challengeId: 1,
                 imageSrc: "/robot.svg",
                 correct: false,
+                text: "el robot",
+                audioSrc: "/es_robot.mp3",
+            },
+        ]);
+
+        await db.insert(schema.challengeOptions).values([
+            {
+                challengeId: 2,
+                correct: true,
+                text: "el hombre",
+                audioSrc: "/es_man.mp3",
+            },
+            {
+                challengeId: 2,
+                correct: false,
+                text: "el mujer",
+                audioSrc: "/es_woman.mp3",
+            },
+            {
+                challengeId: 2,
+                correct: false,
+                text: "el robot",
+                audioSrc: "/es_robot.mp3",
+            },
+        ]);
+
+        await db.insert(schema.challengeOptions).values([
+            {
+                challengeId: 3,
+                correct: false,
+                text: "el hombre",
+                audioSrc: "/es_man.mp3",
+            },
+            {
+                challengeId: 3,
+                correct: false,
+                text: "el mujer",
+                audioSrc: "/es_woman.mp3",
+            },
+            {
+                challengeId: 3,
+                correct: true,
                 text: "el robot",
                 audioSrc: "/es_robot.mp3",
             },
