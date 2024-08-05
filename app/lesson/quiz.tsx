@@ -6,7 +6,7 @@ import Confetti from "react-confetti";
 import { useAudio, useWindowSize, useMount } from "react-use";
 import { useState, useTransition } from "react";
 
-import { challengeOptions, challenges } from "@/db/schema";
+import { challengeOptions, challenges, userSubscription } from "@/db/schema";
 
 import { toast } from "sonner";
 import { Header } from "@/app/lesson/header";
@@ -28,7 +28,11 @@ type Props = {
     completed: boolean;
     challengeOptions: (typeof challengeOptions.$inferSelect)[];
   })[];
-  userSubscription: any; // TODO: Replace with subscription db type
+  userSubscription:
+    | (typeof userSubscription.$inferSelect & {
+        isActive: boolean;
+      })
+    | null;
 };
 
 export const Quiz = ({
@@ -116,7 +120,8 @@ export const Quiz = ({
               openHeartsModal();
               return;
             }
-
+            
+            
             correctControls.play();
             setStatus("correct");
             setPercentage((prev) => prev + 100 / challenges.length);
@@ -196,6 +201,8 @@ export const Quiz = ({
       ? "Select the correct meaning"
       : challenge.question;
 
+  const isPro = !!userSubscription?.isActive;
+
   return (
     <>
       {incorrectAudio}
@@ -203,7 +210,7 @@ export const Quiz = ({
       <Header
         hearts={hearts}
         percentage={percentage}
-        hasActiveSubscription={!!userSubscription?.isActive}
+        hasActiveSubscription={isPro}
       />
       <div className="flex-1">
         <div className="h-full flex items-center justify-center">
@@ -212,7 +219,6 @@ export const Quiz = ({
               {title}
             </h1>
             <div className="">
-              {/* TODO: Challenge Component & Change back to type ASSIST */}
               {challenge.type === "ASSIST" && (
                 <QuestionBubble question={challenge.question} />
               )}

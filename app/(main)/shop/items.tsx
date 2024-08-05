@@ -4,11 +4,10 @@ import Image from "next/image";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import { useTransition } from "react";
 import { refillHearts } from "@/actions/user-progress";
+import { useTransition } from "react";
 import { createStripeUrl } from "@/actions/user-subscription";
-
-const POINTS_TO_REFILL = 10;
+import { POINTS_TO_REFILL } from "@/constants";
 
 type Props = {
   hearts: number;
@@ -59,7 +58,7 @@ export const Items = ({ hearts, points, hasActiveSubscription }: Props) => {
           ) : (
             <div className="flex items-center">
               <Image src="/points.svg" alt="Points" height={20} width={20} />
-              <p className="">{POINTS_TO_REFILL}</p>
+              <p>{POINTS_TO_REFILL}</p>
             </div>
           )}
         </Button>
