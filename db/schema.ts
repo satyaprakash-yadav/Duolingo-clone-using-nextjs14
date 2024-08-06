@@ -71,7 +71,7 @@ export const challengeOptions = pgTable("challenge_options", {
     audioSrc: text("audio_src"),
 });
 
-export const challengeOptionsRelations = relations(challengeOptions, ({ one }) => ({
+export const challengeOptionsRelations = relations(challengeOptions, ({ one, many }) => ({
     challenge: one(challenges, {
         fields: [challengeOptions.challengeId],
         references: [challenges.id],
