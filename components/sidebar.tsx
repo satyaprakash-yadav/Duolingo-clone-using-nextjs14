@@ -27,33 +27,26 @@ export const Sidebar = ({ className }: props) => {
         </div>
       </Link>
       <div className="flex flex-col gay-y-2 flex-1">
-        <SidebarItem 
-          label="Learn" 
-          href="/learn" 
-          iconSrc="/learn.svg" 
-        />
+        <SidebarItem label="Learn" href="/learn" iconSrc="/learn.svg" />
         <SidebarItem
           label="leaderboard"
           href="/leaderboard"
           iconSrc="/leaderboard.svg"
         />
-        <SidebarItem 
-          label="quests" 
-          href="/quests" 
-          iconSrc="/quests.svg" 
-        />
-        <SidebarItem 
-          label="shop" 
-          href="/shop" 
-          iconSrc="/shop.svg" 
-        />
+        <SidebarItem label="quests" href="/quests" iconSrc="/quests.svg" />
+        <SidebarItem label="shop" href="/shop" iconSrc="/shop.svg" />
       </div>
       <div className="p-4">
         <ClerkLoading>
           <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
         </ClerkLoading>
         <ClerkLoaded>
-          <UserButton afterSignOutUrl="/" />
+          <UserButton
+            afterSignOutUrl="/"
+            appearance={{
+              elements: { userButtonPopoverCard: { pointerEvents: "initial" } },
+            }}
+          />
         </ClerkLoaded>
       </div>
     </div>

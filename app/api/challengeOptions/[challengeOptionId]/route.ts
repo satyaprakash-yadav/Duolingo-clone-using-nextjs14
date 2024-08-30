@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export const GET = async (
-    req: Request,
+    _req: Request,
     { params }: { params: { challengeOptionId: number } },
 ) => {
     const isAdmin = await getIsAdmin();
@@ -42,7 +42,7 @@ export const PUT = async (
 };
 
 export const DELETE = async (
-    req: Request,
+    _req: Request,
     { params }: { params: { challengeOptionId: number } },
 ) => {
     const isAdmin = await getIsAdmin();
